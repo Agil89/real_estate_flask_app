@@ -213,7 +213,10 @@ color: white;
     position: absolute;
     background-color: white;
 }
-
+.happy-hour{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
 .secondary-li {
     color: #7e7e7e;
     padding: 15px 25px;

@@ -1,0 +1,44 @@
+.footer-background {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+    background-image: url(https://cdn.mouzenidis-travel.ru/static/userfiles/hotels/original/6134136/6134136_kuu4i2cx.rrn.jpg?preset=b),linear-gradient(black, white) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    color: #FFFFFF;
+}
+
+
+.footer-img {
+    margin: 8px;
+    cursor: pointer;
+}
+
+.footer-list {
+    letter-spacing: 2px;
+}
+
+.class-footer-img {
+    justify-content: center;
+}
+
+.footer-list p {
+    margin-bottom: 0 !important;
+}
+
+.footer-parts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#footer-parts {
+    padding-right: 80px;
+    padding-left: 80px;
+}
+
+.down-footer {
+    padding: 10px;
+    text-align: center;
+    letter-spacing: 2px;
+}
