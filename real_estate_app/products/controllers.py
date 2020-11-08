@@ -8,17 +8,24 @@ from real_estate_app.products.utils import save_file
 
 @products.route('/')
 def all_products():
-    user =User.query.filter_by(id=session.get("user_id")).first()
+    all_types = Type.query.all()
+    all_status = Status.query.all()
+    all_cities = City.query.all()
+    # if session.get("user_id"):
+    #     user =User.query.filter_by(id=session.get("user_id")).first()
     all_products=Product.query.all()
     users_id = session.get("user_id")
-    if user is None:
+    if session.get("user_id") is None:
         auth_user = 'False'
     else:
         auth_user = 'True'
     context = {
         'auth_user':auth_user,
         'users_id':users_id,
-        'all_products':all_products
+        'all_products':all_products,
+        'all_cities':all_cities,
+        'all_types':all_types,
+        'all_status':all_status
 
     }
     return render_template('core/main.html',**context)
@@ -43,6 +50,10 @@ def register():
 def sign_in():
     forms = LoginForm()
     next_page = request.args.get('next','/')
+    all_types = Type.query.all()
+    all_status = Status.query.all()
+    all_cities = City.query.all()
+    all_products = Product.query.all()
     if request.method == 'POST' and forms.validate_on_submit():
         user = User.query.filter_by(username=forms.username.data).first()
         if user and user.check_password(forms.password.data):
@@ -55,8 +66,12 @@ def sign_in():
             else:
                 auth_user='True'
             context = {
+                'all_types':all_types,
+                'all_status':all_status,
+                'all_cities':all_cities,
                 'auth_user':auth_user,
-                'users_id':users_id
+                'users_id':users_id,
+                'all_products':all_products
             }
             return render_template('core/main.html',**context)
         else:
@@ -73,17 +88,33 @@ def logout():
     logout_user()
     if session.get('user_id'):
         del session['user_id']
-    return render_template('core/main.html')
+    all_products = Product.query.all()
+    all_types = Type.query.all()
+    all_status = Status.query.all()
+    all_cities = City.query.all()
+    context = {
+        'all_products':all_products,
+        'all_types':all_types,
+        'all_status':all_status,
+        'all_cities': all_cities,
+    }
+    return render_template('core/main.html',**context)
 
 
 ALLOWED_EXTENSIONS = set(['txt','pdf','png','jpg','jpeg','gif'])
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
+
 @products.route('/create_product',methods=['GET','POST'])
-# @login_required
+@login_required
 def create():
     forms = RegisterProduct()
+    user_id=session.get("user_id")
+    if session.get("user_id") is None:
+        auth_user = 'False'
+    else:
+        auth_user = 'True'
     if request.method=='POST' and forms.validate_on_submit():
         # if 'files[]' not in request.files:
         #     flash('No images loaded')
@@ -107,17 +138,30 @@ def create():
         #         db.session.add(saved_image)
         #         db.session.commit()
         flash('Succesfully created.')
-        return redirect('/')
+        context={
+            'users_id':user_id,
+            'auth_user':auth_user
+        }
+        return redirect(f'/user_page/{user_id}')
     context = {
-        'forms': forms
+        'forms': forms,
+        'auth_user':auth_user,
+        'users_id':user_id
     }
     return render_template('core/create_product.html',**context)
 
 @products.route('/user_page/<int:user_id>')
+@login_required
 def users_products(user_id):
     all_products = Product.query.filter_by(user_id=user_id)
+    if session.get("user_id") is None:
+        auth_user = 'False'
+    else:
+        auth_user = 'True'
     context = {
-        'all_products':all_products
+        'all_products':all_products,
+        'auth_user':auth_user,
+        'users_id':user_id
     }
 
     return render_template('core/user_page.html',**context)
