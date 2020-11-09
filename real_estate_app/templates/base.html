@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    {% block css %}
+
     <link href="{{ url_for('static',filename='css/main.css')}}" rel="stylesheet">
     <link href="{{ url_for('static',filename='css/footer.css')}}" rel="stylesheet">
     <!-- <link rel="stylesheet" href="../../static/css/main.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    {% block css %}
     {% endblock %}
     </head>
 
@@ -42,4 +42,7 @@
     })
 </script>
 <script src="{{ url_for('static',filename='js/main.js')}}"></script>
+<script src="{{ url_for('static',filename='js/filter.js')}}"></script>
+{% block js %}
+{% endblock %}
 </html>

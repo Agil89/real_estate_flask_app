@@ -165,3 +165,12 @@ def users_products(user_id):
     }
 
     return render_template('core/user_page.html',**context)
+
+@products.route('/detail/<int:id>')
+def detail_view(id):
+    print(id)
+    product = Product.query.filter_by(id=id).first()
+    context = {
+        'product':product
+    }
+    return render_template('core/detail.html',**context)

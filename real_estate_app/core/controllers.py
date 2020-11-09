@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify,request
 from real_estate_app import app
 from flask_restful import Api,Resource
 from real_estate_app.products.models import Type,User,Product
@@ -18,7 +18,7 @@ class TypeSchema(ModelSchema):
     class Meta:
         model = Type
 
-@core.route('/getproduct')
+@core.route('/getproducts')
 def getProduct():
     products = Product.query.all()
     product_schema = ProductSchema(many=True)
@@ -26,4 +26,10 @@ def getProduct():
     return jsonify({"products":output})
 
 # api.add_resource(Types,"/types")
+@core.route('/getproduct')
+def get():
+    data = request.GET
+    print('hello')
+    print(data)
 
+    pass

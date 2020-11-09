@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Home page{% endblock %}
+{% block css %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+{% endblock %}
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-4 py-2">
+                <a data-fancybox="gallery"  href="{{url_for('static', filename='images/villa1.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa1.jpeg')}}"></a>
+            </div>
+            <div class="col-4 py-2">
+                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa2.jpg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa2.jpg')}}"></a>
+
+            </div>
+            <div class="col-4 py-2">
+                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa3.jpg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa3.jpg')}}"></a>
+
+            </div>
+            <div class="col-4 py-2">
+                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa4.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa4.jpeg')}}"></a>
+
+            </div>
+            <div class="col-4 py-2">
+                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa5.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa5.jpeg')}}"></a>
+
+            </div>
+            <div class="col-4 py-2">
+                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa6.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa6.jpeg')}}"></a>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <span>{{product.title}}</span>
+            </div>
+            <div class="col-12">
+                <span>{{product.short_description}}</span>
+            </div>
+            <div class="col-12">
+                <span>
+                    {{product.description}}
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
+
+
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+<!-- 2. Create links -->
+
+
+{% endblock %}
+
+<!-- 3. Have fun! -->

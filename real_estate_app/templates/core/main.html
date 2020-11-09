@@ -1,124 +1,124 @@
 {% extends 'base.html' %}
 {% block title %}Home page{% endblock %}
 {% block content %}
-    <section>
-            <div class="row pt-3">
-                <div class="col-3">
+<section>
+    <div class="row pt-3">
+        <div class="col-3">
+            <div class="row">
+                <div class="col-12 py-3 bg-secondary  ">
+                    <span class="text-light estate-titles">Filtrlər</span>
+                </div>
+                <div class="col-xl-12  col-lg-5 col-12">
                     <div class="row">
-                        <div class="col-12 py-3 bg-secondary  ">
-                            <span class="text-light estate-titles">Filtrlər</span>
-                        </div>
-                        <div class="col-xl-12  col-lg-5 col-12">
-                            <div class="row">
-                                <div class="col-12  p-2 my-1">
-                                    <div class="py-2">
-                                        <h6 class="bolder-words">Qiymətə görə : </h6>
-                                    </div>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text min-span" id="inputGroup-sizing-sm">min</span>
-                                        </div>
-                                        <input type="text" class="form-control min-price" aria-label="Small"
-                                            aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text max-span " id="inputGroup-sizing-sm">max</span>
-                                        </div>
-                                        <input type="text" class="form-control max-price" aria-label="Small"
-                                            aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                </div>
+                        <div class="col-12  p-2 my-1">
+                            <div class="py-2">
+                                <h6 class="bolder-words">Qiymətə görə : </h6>
                             </div>
-                        </div>
-
-                        <div class="col-xl-12 mr-lg-2 mb-lg-2 col-lg-5 col-12">
-                            <div class="row">
-                                <!-- <div class="py-2">
-                                    <h6 class="bolder-words">Şəhər seçin :</h6>
-                                </div> -->
-                                <div class="custom-select border-0 col-12  p-2 my-1" style="width:200px;">
-                                    
-                                    <select>
-                                      {% for city in all_cities %}
-                                      <option value="1">{{city.title}}</option>
-                                      {% endfor %}
-                                    </select>
-                                  </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-xl-12 mr-lg-2 mb-lg-2 col-lg-5 col-12">
-                            <div class="row">
-                                <div class="col-12  p-2 my-1">
-                                    <div class="py-2">
-                                        <h6 class="bolder-words">Statusa görə :</h6>
-                                    </div>
-                                    <div class="" id="amenities-hotel">
-                                        {% for status in all_status %}
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <label class="containerr">
-                                                <input class="checked-inputs hotel-amenity feature" type="checkbox">
-                                                <span class="checkmark border"></span>
-                                            </label>
-                                            <span class="mt-3 choose-types">{{status.title}}</span>
-                                        </div>
-                                        {% endfor %}
-                                    </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text min-span" id="inputGroup-sizing-sm">min</span>
                                 </div>
+                                <input type="text" class="form-control min-price" aria-label="Small"
+                                    aria-describedby="inputGroup-sizing-sm">
                             </div>
-                        </div>
-                        <div class="col-xl-12 mr-lg-2 mb-lg-2 col-lg-5 col-12">
-                            <div class="row">
-                                <div class="col-12  p-2 my-1">
-                                    <div class="py-2">
-                                        <h6 class="bolder-words">Əmlak növünə görə :</h6>
-                                    </div>
-                                    <div class="" id="amenities-hotel">
-                                        {% for type in all_types %}
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <label class="containerr">
-                                                <input class="checked-inputs hotel-amenity types" type="checkbox">
-                                                <span class="checkmark border"></span>
-                                            </label>
-                                            <span class="mt-3 choose-types">{{type.title}}</span>
-                                        </div>
-                                        {% endfor %}
-                                    </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text max-span " id="inputGroup-sizing-sm">max</span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 mr-lg-2 mb-lg-2 col-lg-5 col-12">
-                            <div class="row">
-                                <div class="col-12  p-2 my-1">
-                                    <button type="button" class="btn btn-secondary w-100">Axtar</button>
-                                </div>
+                                <input type="text" class="form-control max-price" aria-label="Small"
+                                    aria-describedby="inputGroup-sizing-sm">
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="col-9">
-                    <div class="row pb-3">
-                      {% for product in all_products %}
-                      <div class="col-4 pb-3">
-                          <div class="card" style="width: 18rem;">
-                              <img src="{{ product.image }}" class="card-img-top" style="height: 250px;" alt="...">
-                              <div class="card-body">
-                                <h5 class="card-title">{{product.title}}</h5>
-                                <p>{{product.city_id}}</p>
-                                <p class="card-text pb-2">{{product.short_description}}</p>
-                                <a href="#" class="btn btn-primary w-100 detail-button rounded-0">Detail page</a>
-                              </div>
+
+                <div class="col-xl-12 mr-lg-2 mb-lg-2 col-lg-5 col-12">
+                    <div class="row">
+                        <!-- <div class="py-2">
+                                    <h6 class="bolder-words">Şəhər seçin :</h6>
+                                </div> -->
+                        <div class="custom-select border-0 col-12  p-2 my-1" style="width:200px;">
+
+                            <select>
+                                {% for city in all_cities %}
+                                <option value="1">{{city.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-xl-12 mr-lg-2 mb-lg-2 col-lg-5 col-12">
+                    <div class="row">
+                        <div class="col-12  p-2 my-1">
+                            <div class="py-2">
+                                <h6 class="bolder-words">Statusa görə :</h6>
                             </div>
-                      </div>
-                      {% endfor %}
-                        
+                            <div class="ally" id="amenities-hotel">
+                                {% for status in all_status %}
+                                <label class="container"><span class="pl-3 choose-types">
+                                    {{status.title}}
+                                </span>
+                                    <input type="radio" class="checked-inputs feature"  name="radio">
+                                    <span class="checkmark"></span>
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 mr-lg-2 mb-lg-2 col-lg-5 col-12">
+                    <div class="row">
+                        <div class="col-12  p-2 my-1">
+                            <div class="py-2">
+                                <h6 class="bolder-words">Əmlak növünə görə :</h6>
+                            </div>
+                            <div class="ally" id="amenities-hotel">
+                                {% for type in all_types %}
+                                <label class="container">
+                                    <span class="pl-3 choose-types">
+                                        {{type.title}}
+                                    </span>
+                                    <input type="radio" class="checked-inputs types" checked="checked" name="radioo">
+                                    <span class="checkmark"></span>
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 mr-lg-2 mb-lg-2 col-lg-5 col-12">
+                    <div class="row">
+                        <div class="col-12  p-2 my-1">
+                            <button type="button" class="btn btn-secondary w-100">Axtar</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-    </section>
- {% endblock %}
+        </div>
+        <div class="col-9">
+            <div class="row pb-3">
+                {% for product in all_products %}
+                <div class="col-4 pb-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ product.image }}" class="card-img-top" style="height: 250px;" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{product.title}}</h5>
+                            <p>{{product.city_id}}</p>
+                            <p class="card-text pb-2">{{product.short_description}}</p>
+                            
+                            <a href="/detail/{{product.id}}" class="btn btn-primary w-100 detail-button rounded-0">Detail page</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}
