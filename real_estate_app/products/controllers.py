@@ -168,7 +168,6 @@ def users_products(user_id):
 
 @products.route('/detail/<int:id>')
 def detail_view(id):
-    print(id)
     product = Product.query.filter_by(id=id).first()
     context = {
         'product':product

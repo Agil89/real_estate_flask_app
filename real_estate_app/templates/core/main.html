@@ -56,16 +56,18 @@
                             <div class="py-2">
                                 <h6 class="bolder-words">Statusa görə :</h6>
                             </div>
+                            {% for status in all_status %}
                             <div class="ally" id="amenities-hotel">
-                                {% for status in all_status %}
+
                                 <label class="container"><span class="pl-3 choose-types">
-                                    {{status.title}}
-                                </span>
-                                    <input type="radio" class="checked-inputs feature"  name="radio">
+                                        {{status.title}}
+                                    </span>
+                                    <input type="radio" class="checked-inputs feature" name="radio">
                                     <span class="checkmark"></span>
                                 </label>
-                                {% endfor %}
                             </div>
+
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -75,8 +77,8 @@
                             <div class="py-2">
                                 <h6 class="bolder-words">Əmlak növünə görə :</h6>
                             </div>
+                            {% for type in all_types %}
                             <div class="ally" id="amenities-hotel">
-                                {% for type in all_types %}
                                 <label class="container">
                                     <span class="pl-3 choose-types">
                                         {{type.title}}
@@ -84,8 +86,8 @@
                                     <input type="radio" class="checked-inputs types" checked="checked" name="radioo">
                                     <span class="checkmark"></span>
                                 </label>
-                                {% endfor %}
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -100,17 +102,18 @@
 
         </div>
         <div class="col-9">
-            <div class="row pb-3">
+            <div class="row pb-3 removed-data">
                 {% for product in all_products %}
                 <div class="col-4 pb-3">
                     <div class="card" style="width: 18rem;">
                         <img src="{{ product.image }}" class="card-img-top" style="height: 250px;" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{product.title}}</h5>
-                            <p>{{product.city_id}}</p>
+                            <p>{{product.city}}</p>
                             <p class="card-text pb-2">{{product.short_description}}</p>
-                            
-                            <a href="/detail/{{product.id}}" class="btn btn-primary w-100 detail-button rounded-0">Detail page</a>
+
+                            <a href="/detail/{{product.id}}"
+                                class="btn btn-secondary w-100 detail-button rounded-0">Detail page</a>
                         </div>
                     </div>
                 </div>
@@ -121,4 +124,7 @@
     </div>
 
 </section>
+{% endblock %}
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}

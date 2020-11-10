@@ -10,26 +10,31 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-4 py-2">
+            <div class="col-12 py-4">
+                <h1>Elan haqqında məlumatlar :</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 py-3">
                 <a data-fancybox="gallery"  href="{{url_for('static', filename='images/villa1.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa1.jpeg')}}"></a>
             </div>
-            <div class="col-4 py-2">
+            <div class="col-4 py-3">
                 <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa2.jpg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa2.jpg')}}"></a>
 
             </div>
-            <div class="col-4 py-2">
+            <div class="col-4 py-3">
                 <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa3.jpg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa3.jpg')}}"></a>
 
             </div>
-            <div class="col-4 py-2">
+            <div class="col-4 py-3">
                 <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa4.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa4.jpeg')}}"></a>
 
             </div>
-            <div class="col-4 py-2">
+            <div class="col-4 py-3">
                 <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa5.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa5.jpeg')}}"></a>
 
             </div>
-            <div class="col-4 py-2">
+            <div class="col-4 py-3">
                 <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa6.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa6.jpeg')}}"></a>
 
             </div>
@@ -39,16 +44,32 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <span>{{product.title}}</span>
+            <div class="col-12 py-3 bg-light">
+                <h1>{{product.title}}</h1>
             </div>
-            <div class="col-12">
-                <span>{{product.short_description}}</span>
+            <div class="col-6 py-2">
+                <h4>{{product.short_description}}</h4>
             </div>
-            <div class="col-12">
+            <div class="col-6 py-2">
+                <h4>{{product.city}}</h4>
+            </div>
+           
+            
+            <div class="col-12 py-5 text-left bg-light">
                 <span>
                     {{product.description}}
                 </span>
+            </div>
+            <div class="col-12 bg-secondary text-white pt-4 mt-4">
+                <h4>Əlaqə məlumatları :</h4>
+            </div>
+            <div class="col-6 py-3 bg-secondary text-white  mb-4">
+                <h6>Ad,soyad : {{product.user.first_name}} {{product.user.last_name}}</h6>
+                <h6>Əlaqə telefonu : {{product.user.phone_number}}</h6>
+
+            </div>
+            <div class="col-6 py-3 bg-secondary text-white mb-4">
+                <h6>Email adres : {{product.user.email}}</h6>
             </div>
         </div>
     </div>
