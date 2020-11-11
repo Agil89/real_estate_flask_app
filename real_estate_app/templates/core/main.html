@@ -109,8 +109,14 @@
                         <img src="{{ product.image }}" class="card-img-top" style="height: 250px;" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{product.title}}</h5>
-                            <p>{{product.city}}</p>
-                            <p class="card-text pb-2">{{product.short_description}}</p>
+                            <div class="d-flex justify-content-between">
+                                <p>{{product.city}}</p>
+                                <span>{{product.price}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text pb-2">{{product.short_description}}</p>
+                                <span>{{product.created_at}}</span>
+                            </div>
 
                             <a href="/detail/{{product.id}}"
                                 class="btn btn-secondary w-100 detail-button rounded-0">Detail page</a>

@@ -106,3 +106,4 @@ class Images(db.Model):
 
 
 db.create_all()
+

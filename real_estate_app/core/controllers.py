@@ -31,12 +31,21 @@ def getAll():
     minPrice = request.args.get('minPrice')
     maxPrice = request.args.get('maxPrice')
     products = Product.query.all()
+    print('uzunluq : ',len(products))
+    count = 0
     # print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',type(products))
     # print(request.args.get('checked_types[]'))
     if maxPrice:
+        print('ifin altindaki uzunluq : ', len(products))
         for x in products:
+            print('produktlarin uzunlugu:',len(products) )
+            print('produktlar : ', x)
+            count +=1
+            print('x.price:' , x.price)
+            print('maxprice: ' , maxPrice)
             if int(x.price) >= int(maxPrice):
                 products.remove(x)
+    print('count : ' ,count)
     if minPrice:
         for x in products:
             if int(x.price) <= int(minPrice):

@@ -116,10 +116,10 @@ def create():
     else:
         auth_user = 'True'
     if request.method=='POST' and forms.validate_on_submit():
-        # if 'files[]' not in request.files:
-        #     flash('No images loaded')
-        #     return redirect(request.url)
-        # files = request.files.getlist('files[]')
+        if 'files[]' not in request.files:
+            flash('No images loaded')
+            return redirect(request.url)
+        files = request.files.getlist('files[]')
 
         f = forms.image.data
         file_path = save_file(f)
@@ -129,14 +129,21 @@ def create():
         product = Product(title=forms.title.data,description=forms.description.data,short_description = forms.short_description.data,
                     image=file_path,price=forms.price.data,is_published=forms.is_published.data,user_id=current_user.id,
                           city_id=city_id,type_id=type_id,status_id=status_id)
+        for file in files:
+            if file and allowed_file(file.filename):
+                print('sekillerrrrrrrrrrrrrrrrr',file)
+                continue
+            else:
+                return redirect('/create_product')
         db.session.add(product)
         db.session.commit()
-        # for file in files:
-        #     print()
-        #     if file and allowed_file(file.filename):
-        #         saved_image=Images(image=file,product_id=Product.query.first().id)
-        #         db.session.add(saved_image)
-        #         db.session.commit()
+        for file in files:
+            if file and allowed_file(file.filename):
+                image_path = save_file(file)
+                obj = Product.query.order_by(Product.id.desc()).first().id
+                saved_image=Images(image=image_path,product_id=obj)
+                db.session.add(saved_image)
+                db.session.commit()
         flash('Succesfully created.')
         context={
             'users_id':user_id,
@@ -168,8 +175,67 @@ def users_products(user_id):
 
 @products.route('/detail/<int:id>')
 def detail_view(id):
+    user_id=session.get("user_id")
     product = Product.query.filter_by(id=id).first()
+    images = Images.query.filter_by(product_id=product.id).all()
+    if session.get("user_id") is None:
+        auth_user = 'False'
+    else:
+        auth_user = 'True'
     context = {
-        'product':product
+        'product':product,
+        'auth_user': auth_user,
+        'users_id': user_id,
+        'images':images
     }
     return render_template('core/detail.html',**context)
+
+@products.route('/delete/<int:id>')
+@login_required
+def remove_product(id):
+    user_id = session.get("user_id")
+    product = Product.query.filter_by(id=id).first()
+    db.session.delete(product)
+    db.session.commit()
+    flash('Product deleted')
+    return redirect(f'/user_page/{user_id}')
+
+@products.route('/update/<int:id>',methods=['GET','POST'])
+@login_required
+def change_product(id):
+    product_info = Product.query.filter_by(id=id).first()
+    forms = RegisterProduct(obj=product_info)
+
+    user_id = session.get("user_id")
+    if request.method=='GET':
+        if session.get("user_id") is None:
+            auth_user = 'False'
+        else:
+            auth_user = 'True'
+        context = {
+            'forms': forms,
+            'product_id':product_info.id,
+            'auth_user': auth_user,
+            'users_id': user_id
+        }
+        return render_template('core/update.html', **context)
+    else:
+        f = forms.image.data
+        file_path = save_file(f)
+        city_id = City.query.filter_by(title=forms.city_id.data.title).first().id
+        type_id = Type.query.filter_by(title=forms.type_id.data.title).first().id
+        status_id = Status.query.filter_by(title=forms.status_id.data.title).first().id
+        product_info.title=forms.title.data
+        product_info.description=forms.description.data
+        product_info.short_description=forms.short_description.data,
+        product_info.image=file_path
+        product_info.price=forms.price.data
+        product_info.is_published=forms.is_published.data
+        product_info.user_id=current_user.id
+        product_info.city_id=city_id
+        product_info.type_id=type_id
+        product_info.status_id=status_id
+        db.session.add(product_info)
+        db.session.commit()
+        # db.session.commit()
+        return redirect(f'/user_page/{user_id}')

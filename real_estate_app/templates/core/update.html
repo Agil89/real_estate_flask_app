@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% from "helpers/blog_formhelpers.html" import render_field %}
+{% block content %}
+{% block css %}
+<link href="{{ url_for('static',filename='css/sign.css')}}" rel="stylesheet">
+<link href="{{ url_for('static',filename='css/main.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/footer.css')}}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="../../static/css/main.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% endblock %}
+<div class="row justify-content-center bg-light">
+    <div class="col-md-4 py-5">
+        <form action="/update/{{product_id}}" method='post' enctype="multipart/form-data">
+            {{ forms.csrf_token}}
+            <div class="form-group">
+                {{ render_field(forms.title) }}
+            </div>
+            <div class="form-group">
+                {{ render_field(forms.description) }}
+            </div>
+            <div class="form-group">
+                {{ render_field(forms.short_description) }}
+            </div>
+            <div class="form-group">
+                {{ render_field(forms.image) }}
+            </div>
+            <div class="form-group">
+                {{ render_field(forms.price) }}
+            </div>
+            <div class="form-group">
+                {{ render_field(forms.is_published) }}
+            </div>
+            <div class="form-group">
+                {{ render_field(forms.city_id) }}
+            </div>
+            <div class="form-group">
+                {{ render_field(forms.type_id) }}
+            </div>
+            <div class="form-group">
+                {{ render_field(forms.status_id) }}
+            </div>
+            <!-- <div class="py-1">
+                <label for="">Extra images:</label>
+                <input class="pt-1 pb-3" type="file" name="files[]" multiple="true" autocomplete="off" required>
+            </div> -->
+            <input class="btn btn-secondary w-100" type="submit" value="Update">
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

@@ -57,18 +57,24 @@ function loadAllData(data) {
             for (product of response.products) {
                 document.querySelector('.removed-data').innerHTML +=`
                 <div class="col-4 pb-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="${product.image}" class="card-img-top" style="height: 250px;" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">${product.title}</h5>
+                <div class="card" style="width: 18rem;">
+                    <img src="${ product.image }" class="card-img-top" style="height: 250px;" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.title}</h5>
+                        <div class="d-flex justify-content-between">
                             <p>${product.city}</p>
-                            <p class="card-text pb-2">${product.short_description}</p>
-
-                            <a href="/detail/${product.id}"
-                                class="btn btn-primary w-100 detail-button rounded-0">Detail page</a>
+                            <span>${product.price}</span>
                         </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="card-text pb-2">${product.short_description}</p>
+                            <span>${product.created_at}</span>
+                        </div>
+
+                        <a href="/detail/${product.id}"
+                            class="btn btn-secondary w-100 detail-button rounded-0">Detail page</a>
                     </div>
-                </div>`
+                </div>
+            </div>`
                 
             }
             document.querySelector('.old-pagi').innerHTML=''

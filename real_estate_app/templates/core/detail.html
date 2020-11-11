@@ -15,46 +15,84 @@
             </div>
         </div>
         <div class="row">
+            {% for image in images %}
             <div class="col-4 py-3">
-                <a data-fancybox="gallery"  href="{{url_for('static', filename='images/villa1.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa1.jpeg')}}"></a>
+                <a data-fancybox="gallery" href="{{image.image}}"><img
+                        style="width: 250px; height: 200px;"
+                        src="{{image.image}}"></a>
+            </div>
+            {% endfor %}
+            <!-- <div class="col-4 py-3">
+                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa1.jpeg')}}"><img
+                        style="width: 250px; height: 200px;"
+                        src="{{url_for('static', filename='images/villa1.jpeg')}}"></a>
             </div>
             <div class="col-4 py-3">
-                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa2.jpg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa2.jpg')}}"></a>
+                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa2.jpg')}}"><img
+                        style="width: 250px; height: 200px;"
+                        src="{{url_for('static', filename='images/villa2.jpg')}}"></a>
 
             </div>
             <div class="col-4 py-3">
-                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa3.jpg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa3.jpg')}}"></a>
+                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa3.jpg')}}"><img
+                        style="width: 250px; height: 200px;"
+                        src="{{url_for('static', filename='images/villa3.jpg')}}"></a>
 
             </div>
             <div class="col-4 py-3">
-                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa4.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa4.jpeg')}}"></a>
+                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa4.jpeg')}}"><img
+                        style="width: 250px; height: 200px;"
+                        src="{{url_for('static', filename='images/villa4.jpeg')}}"></a>
 
             </div>
             <div class="col-4 py-3">
-                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa5.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa5.jpeg')}}"></a>
+                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa5.jpeg')}}"><img
+                        style="width: 250px; height: 200px;"
+                        src="{{url_for('static', filename='images/villa5.jpeg')}}"></a>
 
             </div>
             <div class="col-4 py-3">
-                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa6.jpeg')}}"><img style="width: 250px; height: 200px;" src="{{url_for('static', filename='images/villa6.jpeg')}}"></a>
+                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa6.jpeg')}}"><img
+                        style="width: 250px; height: 200px;"
+                        src="{{url_for('static', filename='images/villa6.jpeg')}}"></a>
 
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-12 py-3 bg-light">
-                <h1>{{product.title}}</h1>
+            <div class="col-12 py-3 bg-light d-flex justify-content-between">
+                <div class="row justify-content-between w-100">
+                <div class="col-6">
+                    <h1>{{product.title}}</h1>
+                </div>
+                <div class="col-6 w-100 d-flex">
+                    <div class="w-50 pr-1">
+                        <a type="button" href="/update/{{product.id}}" class="btn btn-secondary w-100">Update</a>
+
+                    </div>
+                    <div class="w-50">
+                        <a type="button" href="/delete/{{product.id}}" class="btn btn-secondary w-100">Delete</a>
+
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="col-6 py-2">
-                <h4>{{product.short_description}}</h4>
+                <div class="row">
+                    <div class="col-12">
+                        <h4>{{product.short_description}}</h4>
+
+                    </div>
+                </div>
             </div>
             <div class="col-6 py-2">
                 <h4>{{product.city}}</h4>
             </div>
-           
-            
+
+
             <div class="col-12 py-5 text-left bg-light">
                 <span>
                     {{product.description}}
