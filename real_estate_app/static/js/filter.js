@@ -62,7 +62,7 @@ function loadAllData(data) {
                     <div class="card-body">
                         <h5 class="card-title">${product.title}</h5>
                         <div class="d-flex justify-content-between">
-                            <p>${product.city}</p>
+                            <p>${product.city.title}</p>
                             <span>${product.price}</span>
                         </div>
                         <div class="d-flex justify-content-between">

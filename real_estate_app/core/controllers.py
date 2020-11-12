@@ -13,63 +13,72 @@ class ProductSchema(ModelSchema):
     class Meta:
         model = Product
 
+    city = ma.Nested("CitySchema")
+
 
 class TypeSchema(ModelSchema):
     class Meta:
         model = Type
 
-# @core.route('/getproducts')
-# def getProduct():
-#     products = Product.query.all()
-#     product_schema = ProductSchema(many=True)
-#     output = product_schema.dump(products)
-#     return jsonify({"products":output})
+class CitySchema(ModelSchema):
+    class Meta:
+        model = City
 
-# api.add_resource(Types,"/types")
+
+
 @core.route('/getproduct')
 def getAll():
     minPrice = request.args.get('minPrice')
     maxPrice = request.args.get('maxPrice')
     products = Product.query.all()
-    print('uzunluq : ',len(products))
-    count = 0
-    # print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',type(products))
-    # print(request.args.get('checked_types[]'))
     if maxPrice:
-        print('ifin altindaki uzunluq : ', len(products))
+        l_max = []
         for x in products:
-            print('produktlarin uzunlugu:',len(products) )
-            print('produktlar : ', x)
-            count +=1
-            print('x.price:' , x.price)
-            print('maxprice: ' , maxPrice)
-            if int(x.price) >= int(maxPrice):
-                products.remove(x)
-    print('count : ' ,count)
+            if not int(x.price) >= int(maxPrice):
+                l_max.append(x)
+    else:
+        l_max=products
     if minPrice:
-        for x in products:
-            if int(x.price) <= int(minPrice):
-                products.remove(x)
-
+        l_min = []
+        for x in l_max:
+            if not int(x.price) <= int(minPrice):
+                l_min.append(x)
+    else:
+        l_min=l_max
     if request.args.get('checked_types[]'):
+        l_types = []
         type = Type.query.filter_by(title=request.args.get('checked_types[]')).first().id
-        for x in products:
-            if int(x.type_id) != int(type):
-                products.remove(x)
-        # products = products.filter(type_id=type).all()
+        for x in l_min:
+            if int(x.type_id) == int(type):
+                l_types.append(x)
+    else:
+        l_types=l_min
     if request.args.get('checked_statuses[]'):
+        print(request.args.get('checked_statuses[]'))
+        l_status=[]
         status = Status.query.filter_by(title=request.args.get('checked_statuses[]')).first().id
-        for x in products:
-            if int(x.status_id) != int(status):
-                products.remove(x)
-                print(products)
+        for x in l_types:
+            if int(x.status_id) == int(status):
+                l_status.append(x)
+    else:
+        l_status = l_types
     if request.args.get('selected_city'):
+        l_city=[]
         city = City.query.filter_by(title=request.args.get('selected_city')).first().id
-        for x in products:
-            if int(x.city_id) != int(city):
-                products.remove(x)
-                print(products)
-        # products = products.filter(status_id=status).all()
+        for x in l_status:
+            if not int(x.city_id) != int(city):
+                l_city.append(x)
+    else:
+        l_city = l_status
+    product_schema = ProductSchema(many=True)
+    output = product_schema.dump(l_city)
+    return jsonify({"products": output})
+
+@core.route('/search')
+def getproducts():
+    search_word=request.args.get('inputValue')
+    products=Product.query.filter(Product.description.contains(search_word)).all()
+    print('asdfasfasdfasdfasdfasdgfasfdgafdsgadfgfdagdfgdsfgsdfgsdrfAAAAAAAAAAAAAAAA',products)
     product_schema = ProductSchema(many=True)
     output = product_schema.dump(products)
     return jsonify({"products": output})

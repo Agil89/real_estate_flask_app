@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kristi&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -72,6 +73,37 @@
     float: left;
 }
 
+.search-input-form {
+    border-radius: 12px;
+    /* box-shadow: 0 4px 4px rgba(0,0,0,.25); */
+    position: relative;
+    margin-left: 250px;
+
+}
+
+.form-div {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.added-span{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.empty {
+    position: absolute;
+    z-index: 2000;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
 .main-li {
     list-style: none;
     position: relative;
@@ -82,11 +114,13 @@
     /* display: none; */
     top: 30px;
 }
-.row{
+
+.row {
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
-.container-fluid{
+
+.container-fluid {
     padding-left: 0px !important;
     padding-right: 0px !important;
 }
@@ -100,9 +134,10 @@
     color: #ffffff;
     font-weight: bold;
 }
-.main-li a:hover{
-text-decoration: none;
-color: white;
+
+.main-li a:hover {
+    text-decoration: none;
+    color: white;
 }
 
 .secondary-li {
@@ -143,7 +178,7 @@ color: white;
     background: -moz-linear-gradient(top, rgba(45, 45, 45, 0.4) 0%, rgba(45, 45, 45, 0.9) 100%);
     background: -webkit-linear-gradient(top, rgba(45, 45, 45, 0.4) 0%, rgba(45, 45, 45, 0.9) 100%);
     /* background: linear-gradient(to bottom, rgba(45,45,45,0.4) 0%, rgba(45,45,45,0.9) 100%); */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#00656460', endColorstr='#a6656460', GradientType=0);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#00656460', endColorstr='#a6656460', GradientType=0);
 }
 
 .h1-book-a-table {
@@ -214,10 +249,12 @@ color: white;
     position: absolute;
     background-color: white;
 }
-.happy-hour{
+
+.happy-hour {
     padding-left: 5px !important;
     padding-right: 5px !important;
 }
+
 .secondary-li {
     color: #7e7e7e;
     padding: 15px 25px;
@@ -817,53 +854,60 @@ textarea::placeholder {
 
 
 
- /* END OF NAVBAR */
-  /* END OF NAVBAR */
-   /* END OF NAVBAR */
-    /* END OF NAVBAR */
-     /* END OF NAVBAR */
-     
-.col-3{
+/* END OF NAVBAR */
+/* END OF NAVBAR */
+/* END OF NAVBAR */
+/* END OF NAVBAR */
+/* END OF NAVBAR */
+
+.col-3 {
     padding-right: 0px !important;
     padding-left: 0px !important;
 }
-.estate-titles{
+
+.estate-titles {
     font-weight: bold;
     font-size: 20px;
 }
-.detail-button{
+
+.detail-button {
     position: absolute;
     bottom: 0;
     left: 0;
 }
 
-.bolder-words,.choose-type-parents{
+.bolder-words,
+.choose-type-parents {
     font-weight: bolder !important;
 }
 
 
-  .bolder-words,.choose-type-parents{
-      font-weight: bolder !important;
-  }
-  .choose-types{
-      font-size: 14px !important;
-  } */
-  .custom-select {
+.bolder-words,
+.choose-type-parents {
+    font-weight: bolder !important;
+}
+
+.choose-types {
+    font-size: 14px !important;
+}
+
+*/ .custom-select {
     position: relative;
     font-family: Arial;
     border: none !important;
-  }
-  
-  .custom-select select {
-    display: none; /*hide original SELECT element:*/
-  }
-  
-  .select-selected {
+}
+
+.custom-select select {
+    display: none;
+    /*hide original SELECT element:*/
+}
+
+.select-selected {
     background-color: rgb(168, 168, 168);
-  }
-  
-  /*style the arrow inside the select element:*/
-  .select-selected:after {
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
     position: absolute;
     content: "";
     top: 14px;
@@ -872,26 +916,27 @@ textarea::placeholder {
     height: 0;
     border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
-  }
-  
-  /*point the arrow upwards when the select box is open (active):*/
-  .select-selected.select-arrow-active:after {
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
     border-color: transparent transparent #fff transparent;
     top: 7px;
-  }
-  
-  /*style the items (options), including the selected item:*/
-  .select-items div,.select-selected {
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,
+.select-selected {
     color: #ffffff;
     padding: 8px 16px;
     /* border: 1px solid transparent; */
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
     user-select: none;
-  }
-  
-  /*style items (options):*/
-  .select-items {
+}
+
+/*style items (options):*/
+.select-items {
     position: absolute;
     background-color: rgb(168, 168, 168);
     top: 100%;
@@ -900,22 +945,25 @@ textarea::placeholder {
     z-index: 99;
     color: black;
     margin-top: 10px;
-  }
-  
-  /*hide the items when the select box is closed:*/
-  .select-hide {
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
     display: none;
-  }
-  
-  .select-items div:hover, .same-as-selected {
+}
+
+.select-items div:hover,
+.same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
-  }
-.min-span{
-    font-size:13px !important;
+}
+
+.min-span {
+    font-size: 13px !important;
     font-weight: bold;
 }
-.max-span{
-    font-size:12px !important;
+
+.max-span {
+    font-size: 12px !important;
     font-weight: bold;
 }
 
@@ -933,17 +981,17 @@ textarea::placeholder {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-  
-  /* Hide the browser's default radio button */
-  .container input {
+}
+
+/* Hide the browser's default radio button */
+.container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
-  }
-  
-  /* Create a custom radio button */
-  .checkmark {
+}
+
+/* Create a custom radio button */
+.checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -951,40 +999,36 @@ textarea::placeholder {
     width: 25px;
     background-color: #eee;
     border-radius: 50%;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .container:hover input ~ .checkmark {
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark {
     background-color: #ccc;
-  }
-  
-  /* When the radio button is checked, add a blue background */
-  .container input:checked ~ .checkmark {
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked~.checkmark {
     background-color: #2196F3;
-  }
-  
-  /* Create the indicator (the dot/circle - hidden when not checked) */
-  .checkmark:after {
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
-  
-  /* Show the indicator (dot/circle) when checked */
-  .container input:checked ~ .checkmark:after {
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked~.checkmark:after {
     display: block;
-  }
-  
-  /* Style the indicator (dot/circle) */
-  .container .checkmark:after {
-       top: 9px;
-      left: 9px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: white;
-  }
+}
 
-
-
-
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}

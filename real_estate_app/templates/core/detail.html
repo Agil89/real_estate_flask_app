@@ -22,41 +22,7 @@
                         src="{{image.image}}"></a>
             </div>
             {% endfor %}
-            <!-- <div class="col-4 py-3">
-                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa1.jpeg')}}"><img
-                        style="width: 250px; height: 200px;"
-                        src="{{url_for('static', filename='images/villa1.jpeg')}}"></a>
-            </div>
-            <div class="col-4 py-3">
-                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa2.jpg')}}"><img
-                        style="width: 250px; height: 200px;"
-                        src="{{url_for('static', filename='images/villa2.jpg')}}"></a>
 
-            </div>
-            <div class="col-4 py-3">
-                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa3.jpg')}}"><img
-                        style="width: 250px; height: 200px;"
-                        src="{{url_for('static', filename='images/villa3.jpg')}}"></a>
-
-            </div>
-            <div class="col-4 py-3">
-                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa4.jpeg')}}"><img
-                        style="width: 250px; height: 200px;"
-                        src="{{url_for('static', filename='images/villa4.jpeg')}}"></a>
-
-            </div>
-            <div class="col-4 py-3">
-                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa5.jpeg')}}"><img
-                        style="width: 250px; height: 200px;"
-                        src="{{url_for('static', filename='images/villa5.jpeg')}}"></a>
-
-            </div>
-            <div class="col-4 py-3">
-                <a data-fancybox="gallery" href="{{url_for('static', filename='images/villa6.jpeg')}}"><img
-                        style="width: 250px; height: 200px;"
-                        src="{{url_for('static', filename='images/villa6.jpeg')}}"></a>
-
-            </div> -->
         </div>
     </div>
 </section>
@@ -68,6 +34,7 @@
                 <div class="col-6">
                     <h1>{{product.title}}</h1>
                 </div>
+                {% if auth_user=='True' %}
                 <div class="col-6 w-100 d-flex">
                     <div class="w-50 pr-1">
                         <a type="button" href="/update/{{product.id}}" class="btn btn-secondary w-100">Update</a>
@@ -78,6 +45,7 @@
 
                     </div>
                 </div>
+                {% endif %}
             </div>
             </div>
             <div class="col-6 py-2">

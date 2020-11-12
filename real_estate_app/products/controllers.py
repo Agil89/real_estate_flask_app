@@ -177,7 +177,7 @@ def users_products(user_id):
 def detail_view(id):
     user_id=session.get("user_id")
     product = Product.query.filter_by(id=id).first()
-    images = Images.query.filter_by(product_id=product.id).all()
+    images = Images.query.filter_by(product_id=product.id)[:6]
     if session.get("user_id") is None:
         auth_user = 'False'
     else:
@@ -220,6 +220,7 @@ def change_product(id):
         }
         return render_template('core/update.html', **context)
     else:
+        files = request.files.getlist('files[]')
         f = forms.image.data
         file_path = save_file(f)
         city_id = City.query.filter_by(title=forms.city_id.data.title).first().id
@@ -237,5 +238,12 @@ def change_product(id):
         product_info.status_id=status_id
         db.session.add(product_info)
         db.session.commit()
+        for file in files:
+            if file and allowed_file(file.filename):
+                image_path = save_file(file)
+                obj = product_info.id
+                saved_image=Images(image=image_path,product_id=obj)
+                db.session.add(saved_image)
+                db.session.commit()
         # db.session.commit()
         return redirect(f'/user_page/{user_id}')

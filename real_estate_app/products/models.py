@@ -25,6 +25,8 @@ class Product(db.Model):
     def __repr__(self):
         return self.title
 
+    def getcity(self):
+        return self.city.title()
 
 
 @login_manager.user_loader
