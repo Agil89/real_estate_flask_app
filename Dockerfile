@@ -11,7 +11,9 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["python","app.py"]
+ENV FLASK_APP="app.py"
+
+CMD [ "flask", "run" , "-h", "0.0.0.0", "-p", "5000"]
 
 
 
