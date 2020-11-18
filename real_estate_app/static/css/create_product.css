@@ -1,0 +1,7 @@
+#is_published{
+    width: 17px !important;
+}
+.publishing{
+    display: flex;
+    justify-content: space-between;
+}

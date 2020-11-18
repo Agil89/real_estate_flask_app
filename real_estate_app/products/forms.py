@@ -14,6 +14,11 @@ class LoginForm(FlaskForm):
     username = StringField('Username', validators=[Length(2, 40), DataRequired()])
     password = PasswordField('Password', validators=[Length(min=8, max=40), DataRequired()])
 
+    def validate_username(self,field):
+        exists = db.session.query(db.exists().where(User.username == field.data)).scalar()
+        if not exists:
+            raise ValidationError('Wrong username')
+        return field
 
 class RegisterForm(FlaskForm):
     username = StringField('Username',validators=[Length(2,40),DataRequired()])

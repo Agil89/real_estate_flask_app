@@ -54,7 +54,6 @@ def getAll():
     else:
         l_types=l_min
     if request.args.get('checked_statuses[]'):
-        print(request.args.get('checked_statuses[]'))
         l_status=[]
         status = Status.query.filter_by(title=request.args.get('checked_statuses[]')).first().id
         for x in l_types:
@@ -78,7 +77,6 @@ def getAll():
 def getproducts():
     search_word=request.args.get('inputValue')
     products=Product.query.filter(Product.description.contains(search_word)).all()
-    print('asdfasfasdfasdfasdfasdgfasfdgafdsgadfgfdagdfgdsfgsdfgsdrfAAAAAAAAAAAAAAAA',products)
     product_schema = ProductSchema(many=True)
     output = product_schema.dump(products)
     return jsonify({"products": output})

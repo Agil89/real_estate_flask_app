@@ -13,7 +13,7 @@ def all_products():
     all_cities = City.query.all()
     # if session.get("user_id"):
     #     user =User.query.filter_by(id=session.get("user_id")).first()
-    all_products=Product.query.all()
+    all_products=Product.query.filter_by(is_published=True).all()
     users_id = session.get("user_id")
     if session.get("user_id") is None:
         auth_user = 'False'
@@ -34,7 +34,6 @@ def all_products():
 def register():
     forms = RegisterForm()
     if forms.validate_on_submit():
-        print(forms.phone_number.data)
         user = User(username=forms.username.data,email=forms.email.data,first_name = forms.first_name.data,
                     last_name=forms.last_name.data,phone_number=forms.phone_number.data,password=forms.password.data)
         db.session.add(user)
@@ -101,7 +100,7 @@ def logout():
     return render_template('core/main.html',**context)
 
 
-ALLOWED_EXTENSIONS = set(['txt','pdf','png','jpg','jpeg','gif'])
+ALLOWED_EXTENSIONS = set(['txt','png','jpg','jpeg','gif'])
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
@@ -131,10 +130,13 @@ def create():
                           city_id=city_id,type_id=type_id,status_id=status_id)
         for file in files:
             if file and allowed_file(file.filename):
-                print('sekillerrrrrrrrrrrrrrrrr',file)
                 continue
             else:
-                return redirect('/create_product')
+                context = {
+                    'image_error':'Format of images not supported',
+                    'forms': forms
+                }
+                return render_template('core/create_product.html',**context)
         db.session.add(product)
         db.session.commit()
         for file in files:
@@ -247,3 +249,12 @@ def change_product(id):
                 db.session.commit()
         # db.session.commit()
         return redirect(f'/user_page/{user_id}')
+
+
+@products.route('/about')
+def about_us():
+    return render_template('core/about.html')
+
+@products.route('/contacts')
+def contacts():
+    return render_template('core/contact.html')

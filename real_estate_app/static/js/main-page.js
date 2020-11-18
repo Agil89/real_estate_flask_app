@@ -4,7 +4,7 @@ document.getElementById('search').addEventListener('input', function () {
     var inputValue = searchInput.value;
     // console.log(inputValue);
     $.ajax({
-        url: 'http://127.0.0.1:5001/search',
+        url: 'http://127.0.0.1:5000/search',
         method: 'GET',
         data: {
             'inputValue': inputValue,

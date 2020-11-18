@@ -49,7 +49,7 @@ document.querySelector('.max-price').addEventListener('input', (e) => {
 
 function loadAllData(data) {
     $.ajax({
-        url: 'http://127.0.0.1:5001/getproduct',
+        url: 'http://127.0.0.1:5000/getproduct',
         method: "GET",
         data: data,
         success: function (response) {

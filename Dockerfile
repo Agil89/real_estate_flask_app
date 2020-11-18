@@ -13,8 +13,11 @@ EXPOSE 5000
 
 ENV FLASK_APP="app.py"
 
-CMD [ "flask", "run" , "-h", "0.0.0.0", "-p", "5000"]
+ENV FLASK_ENV="development"
 
+ENV SECRET_KEY="key"
+
+CMD [ "flask", "run" , "-h", "0.0.0.0", "-p", "5000"]
 
 
 

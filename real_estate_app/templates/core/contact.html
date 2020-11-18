@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}About us page{% endblock %}
+{% block css %}
+<link href="{{ url_for('static',filename='css/contact.css')}}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="container ">
+    <div class="row bg-secondary text-white py-3 my-3">
+        <div class="col-6 py-5">Şirkətin adı :</div>
+        <div class="col-6 py-5">Teko Əmlak</div>
+        <div class="col-6 py-5">Şirkətin ünvanı :</div>
+        <div class="col-6 py-5">Bakı ş. Q.Qarayev prospekti, 231</div>
+        <div class="col-6 py-5">Şirkətin telefon nömrəsi :</div>
+        <div class="col-6 py-5">+994 12 425 66 66</div>
+        <div class="col-6 py-5">Şirkətin email ünvanı :</div>
+        <div class="col-6 py-5">tekoemlak@gmail.com</div>
+    </div>
+</div>
+
+{% endblock %}

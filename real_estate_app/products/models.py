@@ -107,5 +107,7 @@ class Images(db.Model):
     product_id = db.Column(db.Integer(),db.ForeignKey('product.id'))
 
 
+
+
 db.create_all()
 
